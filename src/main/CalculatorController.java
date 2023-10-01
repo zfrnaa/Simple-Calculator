@@ -2,6 +2,7 @@ package src.main;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,9 +10,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 
-public class CalculatorController implements Initializable {
+public class CalculatorController implements Initializable
+{
 
     double num1;
     double num2;
@@ -24,8 +25,8 @@ public class CalculatorController implements Initializable {
     @FXML
     private Button equalButton;
 
-    @FXML
-    private VBox frameCalculator;
+//    @FXML
+//    private VBox frameCalculator;
 
     @FXML
     private Button clearButton;
@@ -54,10 +55,12 @@ public class CalculatorController implements Initializable {
     @FXML
     private MenuItem quit;
 
-    @FXML private TextField resultTextField;
+    @FXML
+    private TextField resultTextField;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         // Add code to handle the events that occur when the user interacts with the GUI components
 
         clearButton.setOnAction(event -> allClear());
@@ -69,48 +72,60 @@ public class CalculatorController implements Initializable {
         equalButton.setOnAction(this::Operation);
     }
 
-    public void allClear() {
+    public void allClear()
+    {
         resultTextField.setText("");
     }
 
-    public void clearOne(){
-        resultTextField.setText(resultTextField.getText().substring(0, resultTextField.getText().length() - 1));
+    public void clearOne()
+    {
+        resultTextField.setText(
+                resultTextField.getText().substring(0, resultTextField.getText().length() - 1));
     }
 
-    public void Number (ActionEvent event){
-        String no = ((Button)event.getSource()).getText();
+    public void Number(ActionEvent event)
+    {
+        String no = ((Button) event.getSource()).getText();
         resultTextField.setText(resultTextField.getText() + no);
     }
 
-    public void Operation (ActionEvent event){
-        String operation = ((Button)event.getSource()).getText();
+    public void Operation(ActionEvent event)
+    {
+        String operation = ((Button) event.getSource()).getText();
 
-        if (!operation.equals("=")){
+        if (! operation.equals("="))
+        {
 
-            if(!op.isEmpty()){
+            if (! op.isEmpty())
+            {
                 return;
             }
             op = operation;
             num1 = Double.parseDouble(resultTextField.getText());
             resultTextField.setText("");
 
-        } else {
+        } else
+        {
 
-            if(op.equals("")){
+            if ("".equals(op))
+            {
                 return;
             }
             num2 = Double.parseDouble(resultTextField.getText());
 
-            try {
+            try
+            {
                 double result = onEqualButtonClick(num1, num2, op);
                 resultTextField.setText(Double.toString(result));
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e)
+            {
                 // Show error message for invalid number input
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Invalid number input");
                 alert.setContentText("Please enter a valid number.");
                 alert.show();
-            } catch (ArithmeticException e) {
+            } catch (ArithmeticException e)
+            {
                 // Show error for divide by zero
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Arithmetic error");
@@ -118,26 +133,33 @@ public class CalculatorController implements Initializable {
                 alert.show();
             }
 
-            op="";
+            op = "";
         }
     }
-    
-    public double onEqualButtonClick(double num1, double num2, String op) {
+
+    public double onEqualButtonClick(double num1, double num2, String op)
+    {
         // Perform the calculation
 
-        switch (op) {
-            case "+" -> {
+        switch (op)
+        {
+            case "+" ->
+            {
                 return num1 + num2;
             }
-            case "-" -> {
+            case "-" ->
+            {
                 return num1 - num2;
             }
-            case "*" -> {
+            case "*" ->
+            {
                 return num1 * num2;
             }
-            case "/" -> {
+            case "/" ->
+            {
                 // Check for divide by zero
-                if (num2 == 0) {
+                if (num2 == 0)
+                {
                     throw new ArithmeticException("Divide by zero");
                 }
                 return num1 / num2;

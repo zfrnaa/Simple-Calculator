@@ -6,12 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Calculator extends Application {
+public class Calculator extends Application
+{
 
-    private CalculatorController controller;
+//    private CalculatorController controller;
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception
+    {
         // Load the FXML file
         Parent root = FXMLLoader.load(getClass().getResource("../resources/calcUi.fxml"));
 
@@ -20,7 +22,9 @@ public class Calculator extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public static void main(String[] args) {
+
+    public static void main(String[] args)
+    {
         Application.launch(Calculator.class, args);
     }
 }

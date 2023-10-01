@@ -1,4 +1,14 @@
-.root{
-    -fx-background-radius: 28;
-    -fx-font-family: "Gotham Rounded Book";
+:root{
+    --fx-background-radius: 28;
+    --font-family: "Gotham Rounded Book";
+}
+
+.calcText{
+    font-family: var(--font-family);
+}
+
+.button {
+    -fx-min-width: 100px;
+    -fx-min-height: 50px;
+    -fx-padding: 10px;
 }
